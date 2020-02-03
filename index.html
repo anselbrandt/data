@@ -5,7 +5,6 @@
     <title>anselbrandt/data</title>
     <style>
     html {
-  text-align: center;
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -30,6 +29,9 @@ a {
 a:hover {
   color: tomato;
 }
+.container {
+    text-align: left;
+}
     </style>
     <script>
       (async () => {
@@ -37,12 +39,13 @@ a:hover {
           "https://api.github.com/repos/anselbrandt/data/contents"
         );
         const data = await response.json();
-        let htmlString = ``;
+        let htmlString = `<div class="container">`;
         for (let file of data) {
           if (file.name !=='index.html') {
             htmlString += `<div><a href="${file.path}">${file.name}</a></div>`;
           }
         }
+        htmlString += `</div>`;
         document.getElementsByTagName("body")[0].innerHTML = htmlString;
       })();
     </script>
